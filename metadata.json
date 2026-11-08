@@ -1,0 +1,6 @@
+{
+  "name": "Little World of Beau",
+  "description": "Just tiny Beau surviving life. Official landing page and merch drop signups.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

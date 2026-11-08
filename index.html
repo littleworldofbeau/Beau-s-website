@@ -1,0 +1,1335 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Little World of Beau</title>
+    <meta name="description" content="Just tiny Beau surviving life. Get notified when Beau merch drops." />
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Little World of Beau" />
+    <meta property="og:description" content="Soft on the outside. Chaos on the inside. Beau merch is coming soon!!." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Little World of Beau" />
+    <meta name="twitter:description" content="Soft on the outside. Chaos on the inside. Beau merch is coming soon!" />
+
+    <!-- Favicon: 🥚 emoji inline SVG -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥚</text></svg>" />
+
+    <!-- Google Fonts: Fredoka & Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;600&display=swap" rel="stylesheet" />
+
+    <style>
+      /* --- CSS TOKENS & RESET --- */
+      :root {
+        --bg: #fbf3e4;
+        --bg2: #f3e3c7;
+        --ink: #3a2a1f;
+        --soft: #6e5a49;
+        --card: #fffaf0;
+        --amber: #d98a1f;
+        --sage: #6f8a5b;
+        --line: #e2cfae;
+        --btn: #3a2a1f;
+        --btnink: #fbf3e4;
+        --error: #c4452d;
+
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        padding-left: env(safe-area-inset-left, 0px);
+        padding-right: env(safe-area-inset-right, 0px);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #25190f;
+          --bg2: #2f2013;
+          --ink: #f6e8cf;
+          --soft: #c9b392;
+          --card: #35261a;
+          --amber: #f2b457;
+          --sage: #a3bb8c;
+          --line: #4a3623;
+          --btn: #f2b457;
+          --btnink: #25190f;
+          --error: #f07167;
+        }
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        background-color: var(--bg);
+        color: var(--ink);
+      }
+
+      body {
+        font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+        font-size: 17px;
+        line-height: 1.6;
+        background-color: var(--bg);
+        color: var(--ink);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      /* Keyboard focus outline */
+      *:focus-visible {
+        outline: 3px solid var(--amber) !important;
+        outline-offset: 2px !important;
+      }
+
+      /* Reduced motion support */
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .hero-beau-image,
+        * {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
+
+      /* Headings & Typography */
+      h1, h2, h3, button, .fredoka {
+        font-family: 'Fredoka', system-ui, sans-serif;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+      }
+
+      h1 {
+        font-size: clamp(2.2rem, 7vw, 3.8rem);
+        font-weight: 600;
+        line-height: 1.15;
+      }
+
+      h2 {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+        font-weight: 600;
+        line-height: 1.25;
+        margin-bottom: 0.75rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+
+      p {
+        color: var(--ink);
+      }
+
+      .subtext {
+        color: var(--soft);
+        font-size: 1.1rem;
+        line-height: 1.55;
+      }
+
+      /* Layout & Section defaults */
+      .section {
+        padding: 64px 20px;
+        position: relative;
+      }
+
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      /* --- SECTION 1: HERO --- */
+      #hero {
+        background: radial-gradient(circle at 85% 15%, rgba(217, 138, 31, 0.18) 0%, rgba(217, 138, 31, 0.06) 40%, transparent 65%), var(--bg);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        #hero {
+          background: radial-gradient(circle at 85% 15%, rgba(242, 180, 87, 0.16) 0%, rgba(242, 180, 87, 0.04) 40%, transparent 65%), var(--bg);
+        }
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+        align-items: center;
+        text-align: center;
+      }
+
+      @media (min-width: 768px) {
+        .hero-grid {
+          grid-template-columns: 1.15fr 0.85fr;
+          text-align: left;
+          gap: 48px;
+        }
+      }
+
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .hero-image-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Hero Beau image: width min(260px, 70vw), centered, gentle floating animation,
+         soft warm drop shadow, cropped to remove the left 12% so the cat is not visible,
+         with border-radius 42% 42% 36% 36% */
+      .hero-beau-image {
+        width: min(260px, 70vw);
+        aspect-ratio: 1 / 1;
+        border-radius: 42% 42% 36% 36%;
+        overflow: hidden;
+        margin: 0 auto;
+        box-shadow: 0 16px 36px -10px rgba(58, 42, 31, 0.22), 0 6px 18px -4px rgba(217, 138, 31, 0.18);
+        animation: floatBeau 5s ease-in-out infinite;
+        position: relative;
+        background-color: var(--card);
+      }
+
+      .hero-beau-image img {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        user-select: none;
+      }
+
+      @keyframes floatBeau {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      /* --- EMAIL FORMS --- */
+      .email-form-wrap {
+        margin-top: 8px;
+        width: 100%;
+      }
+
+      .email-form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        max-width: 480px;
+      }
+
+      .hero-grid .email-form {
+        margin: 0 auto;
+      }
+
+      @media (min-width: 768px) {
+        .hero-grid .email-form {
+          margin: 0;
+        }
+      }
+
+      .form-row {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+      }
+
+      @media (min-width: 520px) {
+        .form-row {
+          flex-direction: row;
+        }
+      }
+
+      .email-input {
+        flex: 1;
+        height: 52px;
+        padding: 0 22px;
+        border-radius: 999px;
+        border: 2px solid var(--line);
+        background-color: var(--card);
+        color: var(--ink);
+        font-family: 'Nunito', system-ui, sans-serif;
+        font-size: 1rem;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .email-input::placeholder {
+        color: var(--soft);
+        opacity: 0.7;
+      }
+
+      .email-input:focus {
+        border-color: var(--amber);
+      }
+
+      .btn-submit {
+        height: 52px;
+        padding: 0 28px;
+        border-radius: 999px;
+        border: none;
+        background-color: var(--btn);
+        color: var(--btnink);
+        font-family: 'Fredoka', system-ui, sans-serif;
+        font-weight: 600;
+        font-size: 1.05rem;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        transition: transform 0.15s ease, opacity 0.2s ease, background-color 0.2s ease;
+        box-shadow: 0 4px 14px rgba(58, 42, 31, 0.12);
+      }
+
+      .btn-submit:hover:not(:disabled) {
+        transform: translateY(-2px);
+        opacity: 0.94;
+      }
+
+      .btn-submit:active:not(:disabled) {
+        transform: translateY(0);
+      }
+
+      .btn-submit:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+      }
+
+      .fine-print {
+        font-size: 0.85rem;
+        color: var(--soft);
+        line-height: 1.45;
+        margin-top: 4px;
+      }
+
+      .form-message {
+        font-size: 0.95rem;
+        font-weight: 600;
+        min-height: 1.4em;
+        margin-top: 6px;
+        transition: all 0.2s ease;
+      }
+
+      .form-message.success {
+        color: var(--sage);
+      }
+
+      .form-message.error {
+        color: var(--error);
+      }
+
+      /* Honeypot hidden input */
+      .visually-hidden {
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        padding: 0 !important;
+        margin: -1px !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+        white-space: nowrap !important;
+        border: 0 !important;
+      }
+
+      /* --- SECTION 2: MEET BEAU --- */
+      #meet-beau {
+        background-color: var(--bg2);
+      }
+
+      .meet-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 36px;
+        align-items: center;
+      }
+
+      @media (min-width: 768px) {
+        .meet-grid {
+          grid-template-columns: 0.9fr 1.1fr;
+          gap: 48px;
+        }
+      }
+
+      .room-image-wrap {
+        text-align: center;
+      }
+
+      .room-image {
+        max-width: 320px;
+        max-height: 480px;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 24px;
+        box-shadow: 0 16px 36px -10px rgba(58, 42, 31, 0.2), 0 6px 18px -4px rgba(217, 138, 31, 0.14);
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .meet-text {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .fact-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 6px;
+      }
+
+      .fact-card {
+        background-color: var(--card);
+        border: 2px solid var(--line);
+        border-radius: 18px;
+        padding: 14px 20px;
+        font-size: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 6px;
+        box-shadow: 0 4px 12px rgba(58, 42, 31, 0.04);
+      }
+
+      .fact-label {
+        font-family: 'Fredoka', system-ui, sans-serif;
+        font-weight: 600;
+        color: var(--amber);
+        font-size: 1.05rem;
+      }
+
+      /* --- SECTION 3: MERCH VOTE --- */
+      #merch-vote {
+        background-color: var(--bg);
+        text-align: center;
+      }
+
+      .section-header {
+        max-width: 620px;
+        margin: 0 auto 36px;
+      }
+
+      .vote-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        width: 100%;
+      }
+
+      .vote-card {
+        background-color: var(--card);
+        border: 2px dashed var(--line);
+        border-radius: 22px;
+        padding: 28px 18px 24px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .vote-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--amber);
+        box-shadow: 0 8px 20px rgba(58, 42, 31, 0.06);
+      }
+
+      .vote-emoji {
+        font-size: 2.6rem;
+        line-height: 1;
+        filter: blur(3px);
+        transition: filter 0.25s ease, transform 0.25s ease;
+        user-select: none;
+      }
+
+      .vote-card:hover .vote-emoji {
+        filter: blur(0px);
+        transform: scale(1.1);
+      }
+
+      .vote-name {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+
+      .btn-vote {
+        border-radius: 999px;
+        border: 2px solid var(--btn);
+        background: transparent;
+        color: var(--btn);
+        padding: 9px 20px;
+        font-family: 'Fredoka', system-ui, sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        width: 100%;
+        max-width: 180px;
+        transition: all 0.2s ease;
+      }
+
+      .btn-vote:hover {
+        background-color: rgba(217, 138, 31, 0.12);
+      }
+
+      .btn-vote.voted {
+        background-color: var(--sage) !important;
+        border-color: var(--sage) !important;
+        color: #ffffff !important;
+      }
+
+      /* Idea Box below Merch Cards */
+      .idea-box-wrap {
+        margin-top: 40px;
+        padding-top: 28px;
+        border-top: 2px dashed var(--line);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        max-width: 520px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+
+      .idea-label {
+        font-family: 'Fredoka', system-ui, sans-serif;
+        font-weight: 600;
+        font-size: 1.15rem;
+        color: var(--ink);
+      }
+
+      .idea-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .idea-input-row {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+      }
+
+      @media (min-width: 520px) {
+        .idea-input-row {
+          flex-direction: row;
+        }
+      }
+
+      .idea-input {
+        flex: 1;
+        height: 48px;
+        padding: 0 20px;
+        border-radius: 999px;
+        border: 2px solid var(--line);
+        background-color: var(--card);
+        color: var(--ink);
+        font-family: 'Nunito', system-ui, sans-serif;
+        font-size: 0.95rem;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .idea-input::placeholder {
+        color: var(--soft);
+        opacity: 0.7;
+      }
+
+      .idea-input:focus {
+        border-color: var(--amber);
+      }
+
+      .btn-idea {
+        height: 48px;
+        padding: 0 24px;
+        border-radius: 999px;
+        border: none;
+        background-color: var(--btn);
+        color: var(--btnink);
+        font-family: 'Fredoka', system-ui, sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        transition: transform 0.15s ease, opacity 0.2s ease, background-color 0.2s ease;
+        box-shadow: 0 4px 12px rgba(58, 42, 31, 0.1);
+      }
+
+      .btn-idea:hover:not(:disabled) {
+        transform: translateY(-2px);
+        opacity: 0.94;
+      }
+
+      .btn-idea:active:not(:disabled) {
+        transform: translateY(0);
+      }
+
+      .btn-idea:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+      }
+
+      .idea-message {
+        font-size: 0.92rem;
+        font-weight: 600;
+        min-height: 1.4em;
+        margin-top: 4px;
+        transition: all 0.2s ease;
+      }
+
+      .idea-message.success {
+        color: var(--sage);
+      }
+
+      .idea-message.error {
+        color: var(--error);
+      }
+
+      /* --- SECTION 4: MOOD --- */
+      #mood {
+        background-color: var(--bg2);
+        text-align: center;
+      }
+
+      .mood-box {
+        max-width: 580px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .quote-area {
+        font-family: 'Fredoka', system-ui, sans-serif;
+        font-weight: 600;
+        font-size: 1.5rem;
+        max-width: 28em;
+        min-height: 3.8em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--ink);
+        line-height: 1.45;
+        padding: 12px 16px;
+      }
+
+      .mood-tag {
+        display: inline-block;
+        background-color: var(--amber);
+        color: var(--btnink);
+        font-family: 'Fredoka', system-ui, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding: 4px 14px;
+        border-radius: 999px;
+        margin-bottom: 8px;
+        animation: popTag 0.25s ease-out;
+      }
+
+      @keyframes popTag {
+        0% { transform: scale(0.85); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+
+      .btn-mood {
+        height: 50px;
+        padding: 0 32px;
+        border-radius: 999px;
+        border: none;
+        background-color: var(--btn);
+        color: var(--btnink);
+        font-family: 'Fredoka', system-ui, sans-serif;
+        font-weight: 600;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: transform 0.15s ease, opacity 0.2s ease;
+        box-shadow: 0 4px 14px rgba(58, 42, 31, 0.12);
+      }
+
+      .btn-mood:hover {
+        transform: translateY(-2px);
+        opacity: 0.94;
+      }
+
+      .btn-mood:active {
+        transform: translateY(0);
+      }
+
+      /* --- SECTION 5: FINAL CTA --- */
+      #cta {
+        background-color: var(--bg);
+        text-align: center;
+      }
+
+      .cta-content {
+        max-width: 540px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+
+      #cta .email-form {
+        margin: 8px auto 0;
+      }
+
+      .btn-instagram {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 14px;
+        padding: 13px 28px;
+        border-radius: 999px;
+        border: 2px solid var(--btn);
+        background-color: transparent;
+        color: var(--btn);
+        font-family: 'Fredoka', system-ui, sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+
+      .btn-instagram:hover {
+        background-color: var(--btn);
+        color: var(--btnink);
+        transform: translateY(-2px);
+      }
+
+      /* --- FOOTER --- */
+      footer {
+        background-color: var(--bg);
+        border-top: 1px solid var(--line);
+        padding: 40px 20px 48px;
+        text-align: center;
+        font-size: 0.9rem;
+        color: var(--soft);
+      }
+
+      .footer-inner {
+        max-width: 640px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .footer-link {
+        color: var(--amber);
+        text-decoration: none;
+        font-weight: 600;
+        font-family: 'Fredoka', system-ui, sans-serif;
+        font-size: 1.05rem;
+        display: inline-block;
+        transition: opacity 0.2s ease;
+      }
+
+      .footer-link:hover {
+        opacity: 0.82;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SECTION 1: HERO -->
+    <header class="section" id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <!-- Text left -->
+          <div class="hero-content">
+            <h1>Beau merch is coming soon!</h1>
+            <p class="subtext">Just tiny Beau surviving life. Leave your email and Beau will let you know the moment the merch drops.</p>
+
+            <div class="email-form-wrap">
+              <form class="email-form" data-form-id="hero-form" novalidate>
+                <div class="form-row">
+                  <label for="hero-email" class="visually-hidden">Email address</label>
+                  <input
+                    type="email"
+                    id="hero-email"
+                    name="email"
+                    class="email-input"
+                    placeholder="your@email.com"
+                    autocomplete="email"
+                    required
+                  />
+                  <!-- Honeypot -->
+                  <input
+                    type="text"
+                    name="website"
+                    class="visually-hidden"
+                    tabindex="-1"
+                    aria-hidden="true"
+                    autocomplete="off"
+                  />
+                  <button type="submit" class="btn-submit">Notify me when Beau drops</button>
+                </div>
+                <div class="form-message" aria-live="polite"></div>
+                <p class="fine-print">Subscribers get early access and a launch discount. By signing up you agree to receive emails about Beau’s merch. Unsubscribe anytime.</p>
+              </form>
+            </div>
+          </div>
+
+          <!-- Beau Image right (egg-shaped border-radius, floating animation) -->
+          <div class="hero-image-wrap">
+            <div class="hero-beau-image">
+              <img
+                src="/assets/aistudio/hehe_bc5cf4cc.jpeg"
+                alt="Beau, a small cream egg-shaped creature in a chunky knit sweater drinking boba"
+                width="526"
+                height="549"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION 2: MEET BEAU -->
+    <section class="section" id="meet-beau">
+      <div class="container">
+        <div class="meet-grid">
+          <!-- Beau room scene left -->
+          <div class="room-image-wrap">
+            <img
+              src="/assets/aistudio/christmas_e6a2913f.jpeg"
+              alt="Beau in a cozy sweater and Santa hat with headphones next to a Christmas tree and lights"
+              class="room-image"
+              loading="lazy"
+              width="714"
+              height="1280"
+            />
+          </div>
+
+          <!-- Text right -->
+          <div class="meet-text">
+            <h2>Meet Beau</h2>
+            <p>Beau is a small egg in a big sweater. Soft on the outside. Chaos on the inside. He has opinions about sleep, none of them good.</p>
+
+            <div class="fact-cards">
+              <div class="fact-card">
+                <strong class="fact-label">Loves:</strong>
+                <span class="fact-text">sweaters, headphones, naps, making fun of people</span>
+              </div>
+              <div class="fact-card">
+                <strong class="fact-label">Fears:</strong>
+                <span class="fact-text">mornings, people, his own thoughts at 3 a.m.</span>
+              </div>
+              <div class="fact-card">
+                <strong class="fact-label">Currently:</strong>
+                <span class="fact-text">surviving</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: MERCH VOTE -->
+    <section class="section" id="merch-vote">
+      <div class="container">
+        <div class="section-header">
+          <h2>Coming soon: vote for what you want first</h2>
+          <p class="subtext">Nothing is for sale yet. Tell Beau what you’d actually buy.</p>
+        </div>
+
+        <div class="vote-grid" id="vote-grid">
+          <!-- Item 1: Sticker pack -->
+          <div class="vote-card" data-item="sticker-pack">
+            <span class="vote-emoji" aria-hidden="true">🏷️</span>
+            <h3 class="vote-name">Sticker pack</h3>
+            <button type="button" class="btn-vote" data-item-id="sticker-pack">I want this</button>
+          </div>
+
+          <!-- Item 2: Mug -->
+          <div class="vote-card" data-item="mug">
+            <span class="vote-emoji" aria-hidden="true">☕</span>
+            <h3 class="vote-name">Mug</h3>
+            <button type="button" class="btn-vote" data-item-id="mug">I want this</button>
+          </div>
+
+          <!-- Item 3: Tote bag -->
+          <div class="vote-card" data-item="tote-bag">
+            <span class="vote-emoji" aria-hidden="true">👜</span>
+            <h3 class="vote-name">Tote bag</h3>
+            <button type="button" class="btn-vote" data-item-id="tote-bag">I want this</button>
+          </div>
+
+          <!-- Item 4: Cozy sweatshirt -->
+          <div class="vote-card" data-item="sweatshirt">
+            <span class="vote-emoji" aria-hidden="true">🧶</span>
+            <h3 class="vote-name">Cozy sweatshirt</h3>
+            <button type="button" class="btn-vote" data-item-id="sweatshirt">I want this</button>
+          </div>
+
+          <!-- Item 5: Plushie -->
+          <div class="vote-card" data-item="plushie">
+            <span class="vote-emoji" aria-hidden="true">🧸</span>
+            <h3 class="vote-name">Plushie</h3>
+            <button type="button" class="btn-vote" data-item-id="plushie">I want this</button>
+          </div>
+
+          <!-- Item 6: Wallpaper pack -->
+          <div class="vote-card" data-item="wallpaper-pack">
+            <span class="vote-emoji" aria-hidden="true">📱</span>
+            <h3 class="vote-name">Wallpaper pack</h3>
+            <button type="button" class="btn-vote" data-item-id="wallpaper-pack">I want this</button>
+          </div>
+        </div>
+
+        <!-- Optional Merch Idea Box -->
+        <div class="idea-box-wrap">
+          <p class="idea-label">Something else you’d want? Tell Beau.</p>
+          <form class="idea-form" id="idea-form" novalidate>
+            <div class="idea-input-row">
+              <label for="idea-input" class="visually-hidden">Something else you’d want? Tell Beau.</label>
+              <input
+                type="text"
+                id="idea-input"
+                name="idea"
+                class="idea-input"
+                placeholder="Stickers"
+                maxlength="200"
+                autocomplete="off"
+              />
+              <button type="submit" class="btn-idea" id="btn-send-idea">Send idea</button>
+            </div>
+            <div class="idea-message" id="idea-message" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: MOOD -->
+    <section class="section" id="mood">
+      <div class="container">
+        <div class="mood-box">
+          <h2>What’s Beau feeling today?</h2>
+          <div class="quote-area" id="mood-quote" aria-live="polite">Press the button. Beau will try his best.</div>
+          <button type="button" class="btn-mood" id="btn-ask-beau">Ask Beau</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: FINAL CALL TO ACTION -->
+    <section class="section" id="cta">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Don’t miss the drop</h2>
+          <p class="subtext">One email when merch is ready. That’s it.</p>
+
+          <div class="email-form-wrap">
+            <form class="email-form" data-form-id="cta-form" novalidate>
+              <div class="form-row">
+                <label for="cta-email" class="visually-hidden">Email address</label>
+                <input
+                  type="email"
+                  id="cta-email"
+                  name="email"
+                  class="email-input"
+                  placeholder="your@email.com"
+                  autocomplete="email"
+                  required
+                />
+                <!-- Honeypot -->
+                <input
+                  type="text"
+                  name="website"
+                  class="visually-hidden"
+                  tabindex="-1"
+                  aria-hidden="true"
+                  autocomplete="off"
+                />
+                <button type="submit" class="btn-submit">Notify me when Beau drops</button>
+              </div>
+              <div class="form-message" aria-live="polite"></div>
+              <p class="fine-print">Subscribers get early access and a launch discount. By signing up you agree to receive emails about Beau’s merch. Unsubscribe anytime.</p>
+            </form>
+          </div>
+
+          <a
+            href="https://www.instagram.com/littleworldofbeau/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-instagram"
+          >
+            Follow Beau on Instagram
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <p>Little World of Beau. We only use your email to tell you about Beau merch. Ask to be removed any time by replying to any email from us.</p>
+        <p>
+          <a
+            href="https://www.instagram.com/littleworldofbeau/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-link"
+          >
+            @littleworldofbeau
+          </a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- SCRIPT -->
+    <script>
+      /* ========================================================================
+       * CONFIGURATION: PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL BELOW
+       * Replace "PASTE_GOOGLE_APPS_SCRIPT_URL_HERE" with your deployed Apps Script URL.
+       * ======================================================================== */
+      const SUBSCRIBE_ENDPOINT = "https://script.google.com/macros/s/AKfycbyHFjlYhAy7F8U9l58Mgfj2LAzpIZaz1ydhhuoDqv-eZIYqAkmrfQM7S77jUmgJhLj7/exec";
+
+      /* --- TYPO DETECTION DOMAIN MAP --- */
+      const DOMAIN_TYPO_MAP = {
+        "gmial.com": "gmail.com",
+        "gmai.com": "gmail.com",
+        "gmail.con": "gmail.com",
+        "gmail.co": "gmail.com",
+        "gamil.com": "gmail.com",
+        "hotmial.com": "hotmail.com",
+        "hotmail.con": "hotmail.com",
+        "yaho.com": "yahoo.com",
+        "yahoo.con": "yahoo.com",
+        "outlok.com": "outlook.com",
+        "outlook.con": "outlook.com",
+        "iclod.com": "icloud.com",
+        "icloud.con": "icloud.com"
+      };
+
+      /* --- BASIC EMAIL REGEX --- */
+      const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      /* Track suggested typo corrections per form to avoid infinite prompt loops */
+      const suggestedEmails = new WeakMap();
+
+      /* --- FORM SUBMISSION HANDLER --- */
+      function setupSignupForm(form) {
+        const emailInput = form.querySelector('input[type="email"]');
+        const honeypotInput = form.querySelector('input[name="website"]');
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const messageEl = form.querySelector('.form-message');
+
+        const originalBtnText = submitBtn.textContent;
+
+        function showMessage(text, type) {
+          messageEl.textContent = text;
+          messageEl.className = 'form-message ' + type;
+        }
+
+        function clearMessage() {
+          messageEl.textContent = '';
+          messageEl.className = 'form-message';
+        }
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          clearMessage();
+
+          const rawEmail = (emailInput.value || '').trim();
+          const honeypotValue = (honeypotInput.value || '').trim();
+
+          // 1. Basic format validation
+          if (!EMAIL_REGEX.test(rawEmail)) {
+            showMessage("That doesn’t look like an email address. Check it and try again.", 'error');
+            emailInput.focus();
+            return;
+          }
+
+          // 2. Typo detection
+          const atIndex = rawEmail.lastIndexOf('@');
+          if (atIndex > 0) {
+            const domain = rawEmail.slice(atIndex + 1).toLowerCase();
+            const correctedDomain = DOMAIN_TYPO_MAP[domain];
+
+            if (correctedDomain) {
+              const correctedEmail = rawEmail.slice(0, atIndex + 1) + correctedDomain;
+              // Check if we haven't already confirmed this exact suggestion
+              if (suggestedEmails.get(form) !== correctedEmail) {
+                suggestedEmails.set(form, correctedEmail);
+                emailInput.value = correctedEmail;
+                showMessage(`Did you mean ${correctedEmail}? Press the button again to confirm.`, 'error');
+                return;
+              }
+            }
+          }
+
+          // 3. Endpoint configured check
+          if (typeof SUBSCRIBE_ENDPOINT === 'string' && SUBSCRIBE_ENDPOINT.startsWith('PASTE_')) {
+            showMessage("Signup isn’t connected yet. The site owner needs to add the Apps Script URL.", 'error');
+            return;
+          }
+
+          // 4. Send request
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending…';
+
+          try {
+            await fetch(SUBSCRIBE_ENDPOINT, {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: {
+                'Content-Type': 'text/plain;charset=utf-8'
+              },
+              body: JSON.stringify({
+                email: rawEmail,
+                website: honeypotValue,
+                source: 'website'
+              })
+            });
+
+            // Since mode is 'no-cors', a non-throwing fetch is treated as success
+            showMessage("You’re on the list! Beau will let you know when merch drops.", 'success');
+            emailInput.value = '';
+            suggestedEmails.delete(form);
+
+            // Re-enable button after 4 seconds
+            setTimeout(() => {
+              submitBtn.disabled = false;
+              submitBtn.textContent = originalBtnText;
+            }, 4000);
+          } catch (err) {
+            showMessage("Couldn’t send that. Check your connection and try again.", 'error');
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+          }
+        });
+      }
+
+      // Initialize all signup forms on the page
+      document.querySelectorAll('.email-form').forEach(setupSignupForm);
+
+      /* ========================================================================
+       * MERCH VOTING (with LocalStorage)
+       * ======================================================================== */
+      const STORAGE_KEY = 'beau_merch_votes_v1';
+
+      function getSavedVotes() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : {};
+        } catch {
+          return {};
+        }
+      }
+
+      function saveVotes(votes) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(votes));
+        } catch {
+          // Ignore localStorage errors (e.g. private mode quota)
+        }
+      }
+
+      function initMerchVote() {
+        const votes = getSavedVotes();
+        const voteButtons = document.querySelectorAll('.btn-vote');
+        const itemNames = {
+          'sticker-pack': 'Sticker pack',
+          'mug': 'Mug',
+          'tote-bag': 'Tote bag',
+          'sweatshirt': 'Cozy sweatshirt',
+          'plushie': 'Plushie',
+          'wallpaper-pack': 'Wallpaper pack'
+        };
+
+        voteButtons.forEach((btn) => {
+          const itemId = btn.getAttribute('data-item-id');
+          if (votes[itemId]) {
+            btn.classList.add('voted');
+            btn.textContent = 'Voted. Beau is touched.';
+          } else {
+            btn.classList.remove('voted');
+            btn.textContent = 'I want this';
+          }
+
+          btn.addEventListener('click', () => {
+            const currentVotes = getSavedVotes();
+            const isVoted = !currentVotes[itemId];
+
+            if (isVoted) {
+              currentVotes[itemId] = true;
+              btn.classList.add('voted');
+              btn.textContent = 'Voted. Beau is touched.';
+            } else {
+              delete currentVotes[itemId];
+              btn.classList.remove('voted');
+              btn.textContent = 'I want this';
+            }
+
+            saveVotes(currentVotes);
+
+            const itemName = itemNames[itemId];
+            if (itemName && typeof SUBSCRIBE_ENDPOINT === 'string') {
+              try {
+                fetch(SUBSCRIBE_ENDPOINT, {
+                  method: "POST",
+                  mode: "no-cors",
+                  headers: { "Content-Type": "text/plain;charset=utf-8" },
+                  body: JSON.stringify({ type: "vote", item: itemName, voted: isVoted })
+                }).catch(() => {});
+              } catch {
+                // Ignore errors silently so the button still works if the request fails
+              }
+            }
+          });
+        });
+      }
+
+      initMerchVote();
+
+      /* ========================================================================
+       * MERCH IDEA FORM
+       * ======================================================================== */
+      function setupIdeaForm() {
+        const form = document.getElementById('idea-form');
+        const input = document.getElementById('idea-input');
+        const btn = document.getElementById('btn-send-idea');
+        const messageEl = document.getElementById('idea-message');
+
+        if (!form || !input || !btn || !messageEl) return;
+
+        function showMessage(text, type) {
+          messageEl.textContent = text;
+          messageEl.className = 'idea-message ' + type;
+        }
+
+        function clearMessage() {
+          messageEl.textContent = '';
+          messageEl.className = 'idea-message';
+        }
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          clearMessage();
+
+          const ideaText = (input.value || '').trim();
+
+          if (ideaText.length < 2) {
+            showMessage("Write your idea first.", 'error');
+            input.focus();
+            return;
+          }
+
+          btn.disabled = true;
+
+          try {
+            await fetch(SUBSCRIBE_ENDPOINT, {
+              method: "POST",
+              mode: "no-cors",
+              headers: { "Content-Type": "text/plain;charset=utf-8" },
+              body: JSON.stringify({ type: "idea", idea: ideaText })
+            });
+
+            input.value = '';
+            showMessage("Thanks! Beau will think about it.", 'success');
+
+            setTimeout(() => {
+              btn.disabled = false;
+            }, 5000);
+          } catch (err) {
+            showMessage("Couldn’t send that. Try again.", 'error');
+            btn.disabled = false;
+          }
+        });
+      }
+
+      setupIdeaForm();
+
+      /* ========================================================================
+       * MOOD SECTION ("Ask Beau")
+       * ======================================================================== */
+      const MOODS = [
+        {
+          name: 'sleepy',
+          quote: '“I know I should sleep, but the voices in my head won’t let me.”'
+        },
+        {
+          name: 'anxious',
+          quote: '“I replayed one awkward moment from 2014 for three hours.”'
+        },
+        {
+          name: 'furious',
+          quote: '“I am calm. I am fine. This is my fine face. (The room is on fire.)”'
+        },
+        {
+          name: 'festive',
+          quote: '“All I want for Christmas is to be left alone, with snacks.”'
+        },
+        {
+          name: 'bleak',
+          quote: '“What a boring planet. Wake me up when it improves.”'
+        },
+        {
+          name: 'hopeful',
+          quote: '“Today I did one thing. That’s a win. Probably.”'
+        },
+        {
+          name: 'tired',
+          quote: '“I need people to understand. I also need a nap.”'
+        }
+      ];
+
+      let lastMoodIndex = -1;
+
+      function setupMood() {
+        const quoteEl = document.getElementById('mood-quote');
+        const askBtn = document.getElementById('btn-ask-beau');
+
+        if (!quoteEl || !askBtn) return;
+
+        askBtn.addEventListener('click', () => {
+          let newIndex;
+          do {
+            newIndex = Math.floor(Math.random() * MOODS.length);
+          } while (newIndex === lastMoodIndex && MOODS.length > 1);
+
+          lastMoodIndex = newIndex;
+          const chosen = MOODS[newIndex];
+
+          // Small amber pill tag with mood name, line break, then quote in curly quotes
+          quoteEl.innerHTML = `<span class="mood-tag">${chosen.name}</span><br>${chosen.quote}`;
+        });
+      }
+
+      setupMood();
+    </script>
+  </body>
+</html>
